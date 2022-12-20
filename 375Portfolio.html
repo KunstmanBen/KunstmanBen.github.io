@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="375Portfolio.css">
+    <title>375 Portfolio</title>
+</head>
+<body>
+    <div class="nav">
+        <div class="navname">
+            <p>Ben Kunstman</p>
+        </div>
+        <div class="links">
+            <a href="#homeLink">Home</a>
+            <a href="#aboutlink">About</a>
+            <a href="#skillslink">Skills</a>
+            <a href="#projectslink">Projects</a>
+        </div>
+    </div>
+    <div class="home" id="homeLink">
+        <h1 id="bubble-hover" style="margin:0;"></h1>
+        <p>View resume</p>
+        <p><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M11 21.883l-6.235-7.527-.765.644 7.521 9 7.479-9-.764-.645-6.236 7.529v-21.884h-1v21.883z"/></svg></p>
+        <a href="375CanvaResume.pdf" target="_blank">
+            <img src="resume.PNG">
+        </a>
+    </div>
+    <div class="about" id="aboutlink">
+        <p style="margin:0;">About</p>
+        <p>I am a student at the University of Wisconsin - Milwaukee currently studying Information Science and Technology. I have a significant interest in learning more about front-end development. I can't wait to explore the fascinating possibilities that HTML, CSS, and JavaScript provide. I have a particular interest in how front-end development may be applied to produce interesting and interactive user interfaces. I'm committed to always enhancing my abilities and knowledge and have a strong interest for remaining current with industry changes. I am convinced that with perseverance and hard effort, I can succeed as a front-end developer. </p>
+    </div>
+    <div class="skills" id="skillslink">
+        <p style="margin:0; padding:1rem;">Skills</p>
+        <div class="skillsContent">
+            <img src="html-svgrepo-com.svg"  height="50px" width="50px" />
+            <img src="css-svgrepo-com.svg"  height="50px" width="50px" />
+            <img src="react-svgrepo-com.svg"  height="50px" width="50px" />
+            <img src="bootstrap-5-1.svg"  height="50px" width="50px" />
+            <img src="php-svgrepo-com.svg"  height="50px" width="50px" />
+            <img src="python-svgrepo-com.svg"  height="50px" width="50px" />
+        </div>
+    </div>
+    <div class="socials">
+        <a href="https://www.linkedin.com/in/ben-kunstman-886155222/" target="_blank">
+            <img src="icons8-linkedin-48.png"/>
+        </a>
+        <a href="mailto:kunstm22@uwm.edu" target="_blank">
+            <img src="icons8-envelope-48.png"/>
+        </a>
+    </div>
+    <div class="projects" id="projectslink">
+        <p style="margin:0; padding:1rem;">Projects</p>
+        <div class="projectsContent">
+            <a href="https://kunstm22.uwmsois.com/pokemon/JSproject.html" target="_blank"> 
+                <img src="pokeproj.PNG" class="poke"/>
+            </a>
+            <img src="movies.PNG" id="movie" onmouseover="hover(this);" onmouseout="unhover(this);"/>
+            <img src="bargraph.PNG"/>
+            <img src="pie.PNG"/>
+        </div>
+    </div>
+
+    <button onclick="topFunction()" id="myBtn" title="Go to top"><img src="double-up-arrow-4848.png" alt="scroll to top"></button>
+    <script>
+        function hover(movie) {
+        movie.setAttribute('src', 'movies2.PNG');
+        }
+        function unhover(movie) {
+        movie.setAttribute('src', 'movies.PNG');
+        }
+
+        const phrase = "Hi I am Ben, Welcome to my portfolio!";
+
+        const targetEl = document.getElementById("bubble-hover");
+        
+        phrase.split("").map((char, idx) => {
+            const el = document.createElement("span");
+
+            el.innerText = char;
+            el.setAttribute("data-index", idx.toString());
+            el.classList.add("hover-char");
+
+            targetEl.appendChild(el);
+        });
+        
+        const hoverChars = [...document.getElementsByClassName("hover-char")];
+
+        const removeClasses = () => {
+            hoverChars.map((char) => {
+                char.classList.remove("hovered");
+                char.classList.remove("hovered-adjacent");
+                char.classList.remove("hovered-adjacent2");
+            });
+        };
+
+        hoverChars.map((char) => {
+            char.addEventListener("mouseover", (e) => {
+                removeClasses();
+
+                const currentElement = e.target;
+                const index = parseInt(currentElement.getAttribute("data-index"), 10);
+
+                const prevIndex = index === 0 ? null : index -1;
+                const prevIndex2 = index === 0 ? null : index -2;
+                const nextIndex = index === phrase.length -1 ? null : index + 1;
+                const nextIndex2 = index === phrase.length -1 ? null : index + 2;
+
+                const prevEl = 
+                    prevIndex !== null && 
+                    document.querySelector(`[data-index="${prevIndex}"]`);
+                const prevEl2 = 
+                    prevIndex2 !== null && 
+                    document.querySelector(`[data-index="${prevIndex2}"]`);
+                const nextEl = 
+                    nextIndex !== null && 
+                    document.querySelector(`[data-index="${nextIndex}"]`);
+                const nextEl2 = 
+                    nextIndex2 !== null && 
+                    document.querySelector(`[data-index="${nextIndex2}"]`);
+
+                e.target.classList.add("hovered");
+                prevEl && prevEl.classList.add("hovered-adjacent");
+                nextEl && nextEl.classList.add("hovered-adjacent");
+                prevEl2 && prevEl2.classList.add("hovered-adjacent2");
+                nextEl2 && nextEl2.classList.add("hovered-adjacent2");
+            });
+        });
+        document
+            .getElementById("bubble-hover")
+            .addEventListener("mouseleave", () => {
+                removeClasses();
+            });
+
+
+    // Get the button:
+    let mybutton = document.getElementById("myBtn");
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+    if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+        mybutton.style.display = "block";
+    } else {
+        mybutton.style.display = "none";
+    }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
+    </script>
+</body>
+</html>
