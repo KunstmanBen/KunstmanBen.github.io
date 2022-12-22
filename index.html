@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
-    <title>Portfolio</title>
+    <link rel="stylesheet" href="375Portfolio.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>375 Portfolio</title>
 </head>
 <body>
     <div class="nav">
@@ -18,6 +19,9 @@
             <a href="#skillslink">Skills</a>
             <a href="#projectslink">Projects</a>
         </div>
+        <a class="icon" onclick="mobileNav()">
+            <i class="fa fa-bars"></i>
+        </a>
     </div>
     <div class="home" id="homeLink">
         <h1 id="bubble-hover" style="margin:0;"></h1>
@@ -29,17 +33,17 @@
     </div>
     <div class="about" id="aboutlink">
         <p style="margin:0;">About</p>
-        <p>As a student majoring in information science and technology, I have built a solid foundation in programming languages including JavaScript, SQL, HTML, CSS, Python, and PHP. Through LinkedIn Learning classes, I have also developed my abilities in product management and user-experience using products like Microsoft Azure and Adobe XD. My attempts to independently master current technologies like React, Node.js, and APIs demonstrate my commitment to lifelong learning. I'm eager to begin my career so that I may use my technological know-how and problem-solving skills to develop creative solutions and have a positive influence. </p>
+        <p>I am a student at the University of Wisconsin - Milwaukee currently studying Information Science and Technology. I have a significant interest in learning more about front-end development. I can't wait to explore the fascinating possibilities that HTML, CSS, and JavaScript provide. I have a particular interest in how front-end development may be applied to produce interesting and interactive user interfaces. I'm committed to always enhancing my abilities and knowledge and have a strong interest for remaining current with industry changes. I am convinced that with perseverance and hard effort, I can succeed as a front-end developer. </p>
     </div>
     <div class="skills" id="skillslink">
         <p style="margin:0; padding:1rem;">Skills</p>
         <div class="skillsContent">
-            <img src="html-svgrepo-com.svg"  height="50px" width="50px" />
-            <img src="css-svgrepo-com.svg"  height="50px" width="50px" />
-            <img src="react-svgrepo-com.svg"  height="50px" width="50px" />
-            <img src="bootstrap-5-1.svg"  height="50px" width="50px" />
-            <img src="php-svgrepo-com.svg"  height="50px" width="50px" />
-            <img src="python-svgrepo-com.svg"  height="50px" width="50px" />
+            <img class = "scroll-element js-scroll fade-in-bottom" src="html-svgrepo-com.svg"  height="50px" width="50px" />
+            <img class = "scroll-element js-scroll fade-in-bottom" src="css-svgrepo-com.svg"  height="50px" width="50px" />
+            <img class = "scroll-element js-scroll fade-in-bottom" src="react-svgrepo-com.svg"  height="50px" width="50px" />
+            <img class = "scroll-element js-scroll fade-in-bottom" src="bootstrap-5-1.svg"  height="50px" width="50px" />
+            <img class = "scroll-element js-scroll fade-in-bottom" src="php-svgrepo-com.svg"  height="50px" width="50px" />
+            <img class = "scroll-element js-scroll fade-in-bottom" src="python-svgrepo-com.svg"  height="50px" width="50px" />
         </div>
     </div>
     <div class="socials">
@@ -54,9 +58,9 @@
         <p style="margin:0; padding:1rem;">Projects</p>
         <div class="projectsContent">
             <a href="https://kunstm22.uwmsois.com/pokemon/JSproject.html" target="_blank"> 
-                <img src="pokeproj.PNG" class="poke"/>
+                <img class = "scroll-element js-scroll fade-in-bottom" src="pokeproj.PNG" class="poke"/>
             </a>
-            <img src="movies.PNG" id="movie" onmouseover="hover(this);" onmouseout="unhover(this);"/>
+            <img class = "scroll-element js-scroll fade-in-bottom" src="movies.PNG" id="movie" onmouseover="hover(this);" onmouseout="unhover(this);"/>
         </div>
     </div>
 
@@ -139,7 +143,7 @@
     window.onscroll = function() {scrollFunction()};
 
     function scrollFunction() {
-    if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+    if (document.body.scrollTop >  500 || document.documentElement.scrollTop > 500) {
         mybutton.style.display = "block";
     } else {
         mybutton.style.display = "none";
@@ -151,6 +155,62 @@
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     }
+
+
+    const scrollElements = document.querySelectorAll(".js-scroll");
+
+    const elementInView = (el, dividend = 1) => {
+    const elementTop = el.getBoundingClientRect().top;
+
+    return (
+        elementTop <=
+        (window.innerHeight || document.documentElement.clientHeight) / dividend
+    );
+    };
+
+    const elementOutofView = (el) => {
+    const elementTop = el.getBoundingClientRect().top;
+
+    return (
+        elementTop > (window.innerHeight || document.documentElement.clientHeight)
+    );
+    };
+
+    const displayScrollElement = (element) => {
+    element.classList.add("scrolled");
+    };
+
+    const hideScrollElement = (element) => {
+    element.classList.remove("scrolled");
+    };
+
+    const handleScrollAnimation = () => {
+    scrollElements.forEach((el) => {
+        if (elementInView(el, 1.25)) {
+        displayScrollElement(el);
+        } else if (elementOutofView(el)) {
+        hideScrollElement(el)
+        }
+    })
+    }
+
+    window.addEventListener("scroll", () => { 
+    handleScrollAnimation();
+    });
+
+    function mobileNav() {
+    let links = document.getElementsByClassName("links");
+    Array.from(links).forEach((x) => {
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+      x.addEventListener("click", function(){x.style.display = "none";})
+    }
+  })
+}
+
+
     </script>
 </body>
 </html>
