@@ -21,6 +21,10 @@ body {
     position: sticky;
     top: 0;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    z-index: 1;
+}
+.nav a.icon {
+    display: none;
 }
 .navname {
     font-size: 24px;
@@ -55,7 +59,7 @@ body {
 }
 
 .home h1 {
-    font-size: 30px;
+    font-size: 40px;
     font-weight: 100;
     cursor: default;
 }
@@ -90,7 +94,7 @@ body {
     padding: 5rem;
 }
 .about p:nth-of-type(2) {
-    width: 50%;
+    width: 50vw;
     font-size: 20px;
     line-height: 2.5rem;
     margin-left: auto;
@@ -108,7 +112,7 @@ body {
     justify-content: center;
     gap: 1rem;
     flex-wrap: wrap;
-    width: 20%;
+    width: 30vw;
     margin-left: auto;
     margin-right: auto;
     padding: 1rem;
@@ -153,7 +157,7 @@ a {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    width: 80%;
+    width: 80vw;
     gap: 1rem;
     margin-left: auto;
     margin-right: auto;
@@ -243,4 +247,102 @@ a {
   
   #myBtn:hover {
     background-color: #555; 
+  }
+
+  .js-scroll {
+    opacity: 0;
+    transition: opacity 2s;
+  }
+   
+  .js-scroll.scrolled {
+    opacity: 1;
+  }
+
+  .scrolled.fade-in-bottom {
+    animation: fade-in-bottom 1s ease-in-out both;
+  }
+  @keyframes fade-in-bottom {
+    0% {
+      -webkit-transform: translateY(50px);
+      transform: translateY(50px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateY(0);
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    .nav {
+        overflow: hidden;
+        display: block;
+        margin-bottom: 0;
+        margin-top: 0;
+        padding: 0;
+      }
+      .nav .links {
+        display: none;
+      }
+      
+      .nav a {
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        font-size: 17px;
+        display: block;
+      }
+      .nav a.icon {
+        background: #4D774E;
+        display: block;
+        position: absolute;
+        padding: 24px 20px;
+        right: 0;
+        top: 0;
+      }
+    .home h1 {
+        font-size: 30px;
+        word-wrap: break-word;
+    }
+    .home p {
+        font-size: 12px;
+    }
+    .about {
+        padding-left: 2rem;
+        padding-right: 2rem;
+        padding-bottom: 0;
+        padding-top: 1rem;
+    }
+    .about p:nth-of-type(2) {
+        width: 80vw;
+        font-size: 12px;
+        line-height: 2rem;
+    }
+    .skills {
+        padding-bottom: 0;
+        padding-top: 1rem;
+    }
+    .skillsContent {
+        width: 60vw;
+    }
+    .skillsContent img {
+        width: 35px;
+        height: 35px;
+    }
+    .projects {
+        padding-left: 2rem;
+        padding-right: 2rem;
+        padding-top: 0;
+    }
+    .projectsContent {
+        padding: 0;
+    }
+    .projectsContent img {
+        width: 70vw;
+        height: 25vh;
+    }
+    #myBtn {
+        right: 5px;
+    }
   }
