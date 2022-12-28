@@ -346,7 +346,7 @@ a {
         right: 5px;
     }
   }
-  @media screen and (min-width: 1334px) {
+  @media screen and (min-width: 1334px) and (max-width: 1739px) {
       .skillsContent {
           width: 23vw;
       }
