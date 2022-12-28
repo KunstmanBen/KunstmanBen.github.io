@@ -346,3 +346,13 @@ a {
         right: 5px;
     }
   }
+  @media screen and (min-width: 1334px) {
+      .skillsContent {
+          width: 23vw;
+      }
+  }
+  @media screen and (min-width: 1740px) {
+      .skillsContent {
+          width: 20vw;
+      }
+  }
